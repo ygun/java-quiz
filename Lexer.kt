@@ -22,25 +22,25 @@ class Lexer {
     @Throws(IOException::class)
     fun readContent(): String {
         val i = FileInputStream(input)
-        val t = StringBuilder()
+        var content = ""
         var data: Int
         while (i.read().also { data = it } > 0) {
-            t.append(data.toChar())
+            content += data.toChar()
         }
-        return t.toString()
+        return content
     }
 
     @Throws(IOException::class)
     fun readContentWOUnicode(): String {
         val i = FileInputStream(input)
-        val temp = StringBuilder()
+        var temp = ""
         var data: Int
         while (i.read().also { data = it } > 0) {
             if (data < 0x80) {
-                temp.append(data.toChar())
+                temp += data.toChar()
             }
         }
-        return temp.toString()
+        return temp
     }
 
     fun saveContent(text: String) {
